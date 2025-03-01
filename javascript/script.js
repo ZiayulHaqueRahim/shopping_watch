@@ -41,6 +41,22 @@ for(let i = 0; i < ringButtons.length; i++){
                 button.classList.add('border-purple-600');
             }else{
                 button.classList.remove('border-purple-600')
-            }  
-        }
+            };
+        };
+    };
+
+// ADD to cart 
+
+    const quantityElement =  document.querySelectorAll(".quantity-button");
+    for(let btn of quantityElement){
+        btn.addEventListener('click', function(event){
+            const amount = event.target.innerText === '+' ? 1 : -1 ;
+            const quantityElement = document.getElementById('quantity');
+            const currentQuantity = parseInt(quantityElement.innerText);
+            const newQuantity = Math.max(0, currentQuantity + amount );
+            quantityElement.innerText = newQuantity;
+            
+            
+        })
+        
     }

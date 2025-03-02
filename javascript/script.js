@@ -58,15 +58,37 @@ for(let i = 0; i < ringButtons.length; i++){
 
 // add to cart ---
     let cartCount = 0;
+    let cartItems = [];
+
     document.getElementById('add-to-cart').addEventListener('click', function(e){
     const checkoutContainer = document.getElementById('checkout-container');
     const quantity = parseInt(document.getElementById('quantity').innerText);
-    if(quantity > 0 ){
-        checkoutContainer.classList.remove('hidden');
-        cartCount = cartCount + quantity;
-        document.getElementById('cart-count').innerText = cartCount;
-    }else{
-        alert('please select a quantity!!!')
-    }
-    
-    })
+        if(quantity > 0 ){
+            checkoutContainer.classList.remove('hidden');
+            cartCount = cartCount + quantity;
+            document.getElementById('cart-count').innerText = cartCount;
+
+
+            // dynamic info showing on a modal containing all cart adding product info ::::====::::
+                const selectedColorButton = document.querySelector('button.border-purple-600.w-6');
+                const selectedColor = selectedColorButton.id.split('-')[0];
+                const selectedSize = document.querySelector('button.border-purple-600:not(.w-6)').innerText.split(' ')[0];    //Advanced but effective ====
+                const selectedPrice =  document.querySelector('button.border-purple-600:not(.w-6)').innerText.split(' ')[1].split('$')[1];
+
+            // now all dynamic element info adding on cart object:::
+                cartItems.push({
+                    image: selectedColor + ".png",
+                    title: 'Classy Modern Smart Watch',
+                    color: selectedColor,
+                    size: selectedSize,
+                    price: quantity * parseInt(selectedPrice)
+
+                });
+
+
+        }else{
+            alert('please select a quantity!!!');
+        }; 
+    });
+
+

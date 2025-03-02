@@ -10,8 +10,6 @@ for(let i = 0; i < ringButtons.length; i++){
         
         //taking dynamic button id:::
     const color = event.target.id.replace("-color", ""); // additional color portion removed // also can be done with spread, slice;
-    console.log(color);
-    
         
         // adding toogle functionality of border change on different varient watch
     for(let j = 0; j < ringButtons.length; j++){
@@ -45,7 +43,7 @@ for(let i = 0; i < ringButtons.length; i++){
         };
     };
 
-// ADD to cart 
+// ADD to cart  count 
 
     const quantityElement =  document.querySelectorAll(".quantity-button");
     for(let btn of quantityElement){
@@ -54,9 +52,21 @@ for(let i = 0; i < ringButtons.length; i++){
             const quantityElement = document.getElementById('quantity');
             const currentQuantity = parseInt(quantityElement.innerText);
             const newQuantity = Math.max(0, currentQuantity + amount );
-            quantityElement.innerText = newQuantity;
-            
-            
+            quantityElement.innerText = newQuantity;  
         })
-        
+    };
+
+// add to cart ---
+    let cartCount = 0;
+    document.getElementById('add-to-cart').addEventListener('click', function(e){
+    const checkoutContainer = document.getElementById('checkout-container');
+    const quantity = parseInt(document.getElementById('quantity').innerText);
+    if(quantity > 0 ){
+        checkoutContainer.classList.remove('hidden');
+        cartCount = cartCount + quantity;
+        document.getElementById('cart-count').innerText = cartCount;
+    }else{
+        alert('please select a quantity!!!')
     }
+    
+    })

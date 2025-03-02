@@ -1,4 +1,7 @@
-                           //   [ Approach -- 1 ]
+    const productImageBase = "./images/";
+   
+
+                                    //   [ Approach -- 1 ]"
 
 // adding functionality of Band Color selsection, its dynamic  image  & changing its border color:::
 const ringButtons = document.querySelectorAll(".ring-button");
@@ -84,11 +87,35 @@ for(let i = 0; i < ringButtons.length; i++){
                     price: quantity * parseInt(selectedPrice)
 
                 });
-
-
         }else{
             alert('please select a quantity!!!');
         }; 
     });
 
+// showing dynamic information into a modal :::
+document.getElementById('checkout-container').addEventListener('click', function(e){
 
+    const cartModal = document.getElementById('cart-modal');
+    const cartContainer = document.getElementById('cart-items');
+
+    for(let i = 0; i < cartItems.length; i++){
+
+        const item = cartItems[i];
+        console.log(item);
+        
+       const row = document.createElement('tr');
+       row.classList.add('border-b');
+       row.innerHTML = `
+            <td>
+                <div class="flex flex-row items-center space-x-2>
+                    <img class="h-12 w-12 object-cover rounded-sm"  src="${productImageBase}${item.image}" alt=" ">
+                    <span class="font-semibold">${item.title}</span>
+                </div>
+            </td>
+       `
+
+       cartContainer.appendChild(row);
+    }
+
+    document.getElementById('cart-modal').classList.remove('hidden');
+});
